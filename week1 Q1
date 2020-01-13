@@ -1,59 +1,108 @@
 #include <stdio.h>
+
 #include <stdlib.h>
+
 #include <string.h>
+
 void func(char *,int,int);
+
 void cat(char *,char *,int n,int l1);
+
 int main()
 
+
+
 {
+
     int a,i,n,l1,l2;
+
     scanf("%d%d",&l1,&n);
+
     char str1[l1];
 
-    printf("length n index entered\n now enter string");
-    for (int i=0;i<l1;i++)
-    scanf("%c",&str1[i]);
+    printf("length n index entered\nnow enter string\n");
+
+
+    scanf("%s",&str1);
+
     func(str1,n,l1);
 
-}
-void func(char *ptr,int n,int l1)
-{
-    char br1[l1];
-    char br2[l1];
 
-    for (int i,j=0;i<l1;i++)
-    {
-        if (i<n)
-        br1[i]= *(ptr+i);
-        else{
-        br2[j]= *(ptr+i);
-        j++;}
-    }
-    cat(br1,br2,n,l1);
+
 }
-void cat(char *a,char *b,int n,int l1)
+
+void func(char *ptr,int n,int l1)
+
 {
-    int l2;
-    printf("enetr length");
-    scanf("%d",&l2);
-    char ne[l2];
-    printf("str to be entered\n");
-    for (int i=0;i<l2;i++)
-    scanf("%c",&ne[i]);
-    char fnal[l1+l2];
-    for (int i=0;i<n;i++)
+
+    char br1[l1];
+
+    char br2[l1];
+    printf("%s \n",ptr);
+
+
+    int ii=0,jj=0;
+    while (*(ptr+ii)!= '\0')
+
     {
-        fnal[i]=*(a+i);
+
+        if (ii<n)
+
+        br1[ii]= *(ptr+ii);
+
+        else{
+
+        br2[jj]= *(ptr+ii);
+
+        jj++;}
+        ii++;
     }
+    printf("%s \n",br1);
+    printf("%s\n",br2);
+
+
+    cat(br1,br2,n,l1);
+
+}
+
+void cat(char *a,char *b,int n,int l1)
+
+{
+
+    int l2;
+
+    printf("enetr length");
+
+    scanf("%d",&l2);
+    printf("%s",a);
+
+    char ne[l2];
+
+    printf("str to be entered\n");
+
+
+    scanf("%s",&ne);
+
+    char fnal[l1+l2];
+
+    for (int i=0;i<n;i++)
+
+    {
+
+        fnal[i]=*(a+i);
+
+    }
+
     for (int i=n,j=0;i<n+l2;i++,j++)
+
     fnal[i]=ne[j];
-    for (int i=n+l2,j=0;i<n+l2+(l1-n);i++,j++)
+
+    for (int i=n+l2,j=0;i<l2+l1;i++,j++)
+
     fnal[i]=*(b+j);
 
-    for (int j=0;j<l1+l2;j++)
-    printf("%c",fnal[j]);
+    printf("%s",fnal);
 }
-
 
 ###################################################################################
 q2
