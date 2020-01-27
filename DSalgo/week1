@@ -1,0 +1,78 @@
+//#include <iostream>
+//
+//using namespace std;
+//int func1(int);
+//void func2(int *);
+//int main()
+//{
+//    int a=5,b;
+//    int *ptr;
+//    ptr=&a;
+//    b=func1(a);
+//    func2(ptr);
+//    cout <<"Pass by Value"<<b<<endl<<"pass by refrence" <<a<< endl;
+//    return 0;
+//}
+//int func1(int b)
+//{
+//    return b*3;
+//}
+//void func2(int *b)
+//{
+//    *b=*b*3;
+//}
+#############################################
+#include <iostream>
+using namespace std;
+class rect{
+    public:
+        float len;
+        float wid;
+        void setlen(float l)
+        {
+            len=l;
+            //cin>>"enter length">>len>>endl;
+        }
+        void setwid(float w){
+            wid=w;
+            //cin>>"enter width">>wid>>endl;
+        }
+        float perimeter()
+        {
+            float a;
+            a=2*(len+wid);
+            return a;
+        }
+        float area()
+        {
+            float b;
+            b= len*wid;
+            return b;
+
+        }
+
+        int sameArea(rect a)
+        {
+            if (a.area()==area())
+                return 1;
+            else
+                return 0;
+
+        }
+};
+
+int main()
+{
+    rect rect1;
+    rect rect2;
+    rect1.setlen(5.0);
+    rect1.setwid(2.5);
+    rect2.setlen(5.0);
+    rect2.setwid(2.5);
+    cout<<"perimetere"<<rect1.perimeter()<<endl;
+    cout<<"area"<<rect1.area()<<endl;
+     cout<<"perimetere"<<rect2.perimeter()<<endl;
+    cout<<"area"<<rect2.area()<<endl;
+    cout<<"same area"<<rect1.sameArea(rect2)<<endl;
+
+}
