@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node *next;
+}*first;
+
+void create(int arr[],int n)
+{
+    struct Node *p,*t;
+    p=(struct Node *)malloc(sizeof(struct Node));
+    p->data=arr[0];
+    p->next=NULL;
+    first=p;
+    
+    for (int i=1;i<n;i++)
+    {
+        t=(struct Node *)malloc(sizeof(struct Node));
+        t->data=arr[i];
+        t->next=NULL;
+        
+        p->next=t;
+        p=p->next;
+    }
+    
+}
+
+void display(struct Node *t)
+{
+    if (t!=NULL)
+    {
+    printf("%d",t->data);
+   
+    display(t->next);
+    }
+}
+void c_max(struct Node *r)
+{
+    int c=0,m=r->data;
+    while (r)
+    {
+        c++;
+        if (m<r->data)
+        {
+            m=r->data;
+        }
+        r=r->next;
+    }
+    printf("\ncount : %d",c);
+    printf("\nmax : %d\n",m);
+}
+
+void insert(int val,int pos)
+{
+    struct Node *t1,*t2,*t3;
+    t2=first;
+    t1=(struct Node *)malloc(sizeof(struct Node));
+
+    if (pos==0)
+    {
+        t1->data=val;
+        t1->next=first;
+        first=t1;
+    }
+    else
+    {
+        for(int i=1;i<pos;i++)
+            t2=t2->next;
+        t3=t2->next;
+        t1->data=val;
+        t1->next=t3;
+        t2->next=t1;
+        
+        
+    }
+}
+
+strut Node *name()
+{
+    char str1[20];
+    printf("enter name:\n");
+    gets(str1);
+}
+int main()
+{
+    int val=55,pos=0;
+    int arr[]={4,6,3,7,5,9,1,8,2,0};
+    printf("Hello World\n");
+    create(arr,10);
+    display(first);
+    c_max(first);
+    insert(val,pos);
+    display(first);
+
+    return 0;
+}
