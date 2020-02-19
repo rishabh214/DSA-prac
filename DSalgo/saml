@@ -1,0 +1,72 @@
+/******************************************************************************
+program to implement multiplication of two polynomials
+
+*******************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+    int val;
+    int coff;
+    struct Node *next;
+}*p,*q,*f;
+
+struct Node * create (int val[],int coff[])
+{
+    struct Node *p,*p1,*t;
+    p=(struct Node *)malloc(sizeof(struct Node));
+    p->val=val[0];
+    p->coff=coff[0]
+    p->next=NULL;
+    p1=p;
+    
+    for (int i=1;i<n;i++)
+    {
+        t=(struct Node *)malloc(sizeof(struct Node));
+        t->data=arr[i];
+        t->next=NULL;
+        
+        p->next=t;
+        p=p->next;
+    }
+    
+}
+
+struct Node * poly_multiply(struct Node *t1,struct Node *t2)
+{
+    struct Node *t3,*t4;
+    t4=f=(struct Node *)malloc(sizeof(struct Node));
+    t4->val=t1->val * t2->val;
+    t4->coff=t1->coff + t2->coff;
+    t4->next=NULL;
+    
+    t2=t2->next;
+    
+    while (t1)
+    {
+        while(t2)
+        {
+            t3=(struct Node *)malloc(sizeof(struct Node));
+            t3->val=t1->val * t2->val;
+            t3->coff=t1->coff + t2->coff;
+            t3->next=NULL;
+            
+            t4->next=t3;
+            t4=t3;
+            t2=t2->next;
+        }
+        
+        t1=t1->next;
+        t2=q;
+        
+    }
+}
+int main()
+{
+    p=create();
+    q=create();
+    display(poly_multiply(p,q));
+    printf("Hello World");
+
+    return 0;
+}
