@@ -11,24 +11,26 @@ struct Node
     struct Node *next;
 }*p,*q,*f;
 
-struct Node * create (int val[],int coff[])
+struct Node * create (int val[],int coff[],int n)
 {
     struct Node *p,*p1,*t;
     p=(struct Node *)malloc(sizeof(struct Node));
     p->val=val[0];
-    p->coff=coff[0]
+    p->coff=coff[0];
     p->next=NULL;
     p1=p;
     
     for (int i=1;i<n;i++)
     {
         t=(struct Node *)malloc(sizeof(struct Node));
-        t->data=arr[i];
+        t->val=val[i];
         t->next=NULL;
+        t->coff=coff[i];
         
         p->next=t;
         p=p->next;
     }
+    return p1;
     
 }
 
@@ -60,13 +62,26 @@ struct Node * poly_multiply(struct Node *t1,struct Node *t2)
         t2=q;
         
     }
+    return f;
+}
+void display(struct Node *u)
+{
+    while (u!=NULL )
+    {
+        if (u->val != 0)
+        printf("%d %d\n",u->val,u->coff);
+        u=u->next;
+    }
 }
 int main()
 {
-    p=create();
-    q=create();
+    int v[]={5,2,4};
+    int c[]={2,1,0};
+    p=create(v,c,3);
+    int vv[]={2,0,5};
+    int cv[]={2,1,0};
+    q=create(vv,cv,3);
     display(poly_multiply(p,q));
-    printf("Hello World");
 
     return 0;
 }
