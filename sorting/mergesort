@@ -1,0 +1,68 @@
+#include <stdio.h>
+void merge(int arr[],int l,int mid,int h)
+{
+    int i=l,k=l;
+    int j=mid+1;
+    int m[100];
+    
+    while(i<=mid && j<=h)
+    {
+        if(arr[i]>arr[j])
+            m[k++]=arr[j++];
+        else
+            m[k++]=arr[i++];
+                
+        
+    }
+
+    for(;i<=mid;i++)
+        m[k++]=arr[i];
+    for(;j<=h;j++)
+        m[k++]=arr[j];
+        
+    for(i=l;i<=h;i++)
+        arr[i]=m[i];
+}
+ void imerge(int arr[],int n)
+ {
+     int p,mid,l,h,i;
+     for( p=2;p<n;p=p*2)
+     {
+         for( i=0;i+p-1<=n;i=i+p)
+         {
+              l=i;
+              h=i+p-1;
+              mid=(l+h)/2;
+             
+             merge(arr,l,mid,h);
+         }
+     }
+     if (p/2<n)
+        merge(arr,0,p/2-1,n);
+ }
+ 
+ void Rmerge(int arr[],int l,int h)
+ {
+     int mid=(l+h)/2;
+     if(l<h)
+     {
+     Rmerge(arr,l,mid);
+     Rmerge(arr,mid+1,h);
+     merge(arr,l,mid,h);     
+}
+     
+ }
+ void display(int arr[],int n)
+ {
+     for (int p=0;p<n;p++)
+        printf("%d-",arr[p]);
+    printf("\n");
+ }
+ int main(void) {
+    int arr[8]={7,1,4,2,78,8,3,9};
+    //imerge(arr,8);
+    Rmerge(arr,0,7);
+    display(arr,8);
+	return 0;
+}
+
