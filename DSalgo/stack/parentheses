@@ -1,0 +1,107 @@
+struct Stack{
+    char data;
+    struct Stack *next;
+}*top=NULL;
+
+void push(char a)
+{
+    struct Stack *p;
+    p=(struct Stack *)malloc(sizeof(struct Stack));
+    if (p==NULL)
+    {
+        printf("overflow");
+        return;
+    }
+    else
+    {
+        p->data= a;
+        p->next=top;
+        top=p;
+
+    }
+
+}
+void display()
+{
+    struct Stack *o=top;
+    while(o!=NULL)
+    {
+        printf("%c-",o->data);
+        o=o->next;
+    }
+}
+int isempty()
+{
+    if (top==NULL)
+        return 1;
+    else
+        return 0;
+}
+char pop()
+{
+    if(top==NULL)
+    {
+        printf("stack empty\n");
+        return '#';
+    }
+    else
+    {
+        struct Stack *i=top;
+        char a;
+        a=top->data;
+        top=top->next;
+        free(i);
+
+        return a;
+    }
+}
+int parantheses_match(char arr[],int a)
+{
+    for(int i=0;i<a;i++)
+    {
+        //int x,y;
+        char c=arr[i];
+        if (c=='{' || c=='[' || c=='(')
+        {
+            push(c);
+        }
+        else if (c=='}' || c==']' || c==')')
+        {
+            if(top==NULL)
+            {
+                return 0;
+            }
+            else
+            {
+                int x,y=c;
+                x=pop();
+                if(y-x>4)
+                {
+                    return 0;
+                }
+            }
+
+        }
+    }
+
+    if(top==NULL)
+        return 1;
+    else
+        return 0;
+}
+
+
+int main()
+{
+    char arr[]="{{[[]}";
+    int a,p;
+    a=strlen(arr);
+
+    p=parantheses_match(arr,a);
+
+    if(p==1)
+        printf("TRUE");
+    else
+        printf("false");
+
+}
