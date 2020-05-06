@@ -127,23 +127,14 @@ int printAutoSuggestions(TrieNode* root, const string query)
 
 void  Contacts()
 {
-	gquiz1.insert(pair<string,string>("abc", "9917102223"));
-	gquiz1.insert(pair<string, string>("abcd","9917102123"));
-	gquiz1.insert(pair<string, string >("efc", "9917102213"));
-	gquiz1.insert(pair<string, string >("ers", "9917102243"));
-	gquiz1.insert(pair<string, string >("fefc", "9917102233"));
-	gquiz1.insert(pair<string, string >("errs", "9917102343"));
-	gquiz1.insert(pair<string, string >("abcgu", "9917402343"));
-	gquiz1.insert(pair<string, string >("errhs", "9917202343"));
-	gquiz1.insert(pair<string, string >("erhsd", "9917262343"));
 	cout << endl;
 }
 
 void Display()
 {
     map<string, string>::iterator itr;
-	cout << "\nThe map gquiz1 is : \n";
-	cout << "\tKEY\tELEMENT\n";
+	cout << "\nThe current phonebook is : \n";
+	cout << "\tNAME\tNUMBER\n";
 	for (itr = gquiz1.begin(); itr != gquiz1.end(); ++itr) {
 		cout << '\t' << itr->first
 			<< '\t' << itr->second << '\n';
@@ -159,7 +150,7 @@ void  trie(struct TrieNode* root,string s){
         cout << "No other strings found with this prefix\n";
 
     else if (comp == 0)
-        cout << "No string found with this prefix\n";
+        cout << "Any contact name like this is not saved\n";
 
  }
 
@@ -182,7 +173,7 @@ void Enter(struct TrieNode* root)
         cin>>ph_num;
         gquiz1.insert(pair<string,string>(name,ph_num));
         insert(root,name);
-        Display();
+        cout << "Number is entered sucessfully";
     }
 }
 void Search(struct TrieNode* root)
@@ -195,41 +186,40 @@ void Search(struct TrieNode* root)
     {
         cout<<"contact Found"<<endl;
         cout<<gquiz1.find(name)->second;
+        return;
     }
     else if(gquiz1.find(name)==gquiz1.end() )
     {
         trie(root,name);
+        Search(root);
     }
 }
 
 
 int main()
 {
-    Contacts();
     struct TrieNode* root = getNode();
-    insert(root, "abc");
-    insert(root, "abcd");
-    insert(root, "efc");
-    insert(root, "errhs");
-    insert(root, "erhsd");
-    insert(root, "ers");
-    insert(root, "errs");
-    insert(root, "fefc");
-    insert(root, "abcgu");
 
     char ans;
-    cout<< "Do you want to enter or search a contact[e/s]"<<endl;
+    while(true)
+    {
+    cout<< "Enter\n1\tTo enter conatct\n2\tTo search conatct\n3\tTo see all contacts\nX\tTo exit"<<endl;
     cin>>ans;
-
-    if (ans=='e' || ans =='E')
+    if(ans == 'x' || ans=='X') break;
+    if (ans=='1')
     {
         Enter(root);
     }
-    else if(ans=='s' || ans =='S')
+    else if(ans=='2')
     {
         Search(root);
     }
+    else if(ans=='3')
+    {
+        Display();
+    }
     else
         cout<<"invalid input"<<endl;
-
+    }
+    
 }
